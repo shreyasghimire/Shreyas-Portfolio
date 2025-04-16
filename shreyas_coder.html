@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shreyas | Code & Vision</title>
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --text: #333;
+      --primary: #4e54c8;
+      --secondary: #8f94fb;
+      --card: #ffffff;
+      --button: #4e54c8;
+    }
+
+    body.dark {
+      --bg: #0f0f0f;
+      --text: #eee;
+      --card: #1e1e1e;
+      --button: #6c63ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 30px 15px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .toggle-mode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 22px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--text);
+    }
+
+    .input-group {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #000;
+      color: #fff;
+    }
+
+    button.submit-btn {
+      margin-left: 10px;
+      padding: 8px 14px;
+      background: var(--button);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .typing {
+      font-size: 1.3em;
+      margin-top: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid;
+      width: 0;
+      animation: typing 3s steps(40, end) forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .nav-buttons {
+      display: none;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 15px;
+    }
+
+    .nav-buttons button {
+      padding: 10px 20px;
+      border: none;
+      color: white;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .blue { background: #3498db; }
+    .green { background: #2ecc71; }
+    .yellow { background: #f1c40f; }
+
+    .section {
+      display: none;
+      margin-top: 40px;
+      padding: 25px;
+      border-radius: 15px;
+      background-color: var(--card);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      color: var(--text);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-mode" onclick="toggleMode()" id="modeIcon">🌙</button>
+
+  <header>
+    <h1>Shreyas | Code & Vision</h1>
+  </header>
+
+  <div class="input-group">
+    <input type="text" id="username" placeholder="Enter your name"/>
+    <button class="submit-btn" onclick="submitName()">Submit</button>
+    <div id="welcomeMsg"></div>
+  </div>
+
+  <div class="nav-buttons" id="navBtns">
+    <button class="blue" onclick="showSection('about')">About Me</button>
+    <button class="green" onclick="showSection('projects')">Projects</button>
+    <button class="yellow" onclick="showSection('contact')">Contact</button>
+  </div>
+
+  <div class="section" id="about">
+    <h2>Hi, I'm Shreyas</h2>
+    <p>I'm a passionate developer with a love for capturing the essence of life through my lens. Whether it's the beauty of nature, the depth of portraits, or the raw emotion in candid moments, photography allows me to tell stories that words alone cannot express.</p>
+    <p>I enjoy building innovative web apps and solutions, blending tech with visual art to inspire and create meaningful impact.</p>
+  </div>
+
+  <div class="section" id="projects">
+    <h2>Projects ↓</h2>
+    <p>Soon</p>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>Contact Me</h2>
+    <p>Email me at <a href="mailto:shreyasdeveloper7@gmail.com">shreyasdeveloper7@gmail.com</a></p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Shreyas. Crafted By ❤️ Shreyas < / > .</p>
+  </footer>
+
+  <script>
+    function submitName() {
+      const name = document.getElementById('username').value;
+      const welcomeMsg = document.getElementById('welcomeMsg');
+      const navBtns = document.getElementById('navBtns');
+
+      if (name) {
+        welcomeMsg.innerHTML = `<div class="typing">Welcome, ${name} to Shreyas' world!</div>`;
+        navBtns.style.display = 'flex';
+      }
+    }
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+      document.getElementById(sectionId).style.display = 'block';
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      document.getElementById('modeIcon').textContent =
+        document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>
